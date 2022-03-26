@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Авторизация</title>
+</head>
+
+<body>
+    Login: <br>
+    <input id="name" type="text"><br>
+    Password: <br>
+    <input id="pass" type="text"><br>
+    <button type="submit" onclick="check()">Sign in</button>
+
+
+<script>
+
+    function check(){
+        const name = document.getElementById("name").value;
+        const pass = document.getElementById("pass").value
+
+        const url = 'https://127.0.0.1:3000/login';
+        const data = {username:name, password: pass};
+
+        try {
+            const response =  fetch(url, {
+                method: 'POST', 
+                body: JSON.stringify(data), 
+                headers: {'Content-Type': 'application/json'}
+            });
+
+        const json =  response.json();
+        console.log('Успех:', JSON.stringify(json));
+
+        } catch (error) {
+            console.error('Ошибка:', error);
+        }
+    }
+</script>
+
+
+</body>
+</html>
